@@ -1,0 +1,53 @@
+---
+title: "Homework 1"
+author: "Sarosh Farhan (24210969)"
+format: 
+  pdf:
+    include-in-header: 
+      text: |
+        \usepackage{xcolor}
+editor: visual
+execute:
+  echo: false
+---
+
+# Introduction
+
+The \textcolor{blue}{Iris dataset} is a classic dataset in pattern recognition and multivariate statistics. It contains measurements of *sepal length*, *sepal width*, *petal length*, and *petal width* for 150 flowers from three species of iris: *setosa*, *versicolor*, and *virginica*.
+
+# Approach
+
+I will explore the distribution of petal length versus petal width for each species using a scatter plot. This will help me visualize how distinct the species are based on these two features.
+
+# Statistics
+
+The following table provides the count, mean, and standard deviation of \textcolor{purple}{petal length} and \textcolor{orange}{petal width} for each iris species.
+
+```{r, error=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(knitr)
+
+# Summary statistics
+summary_table <- iris %>%
+  group_by(Species) %>%
+  summarise(
+    Count = n(),
+    MeanPetalLength = mean(Petal.Length),
+    SDPetalLength = sd(Petal.Length),
+    MeanPetalWidth = mean(Petal.Width),
+    SDPetalWidth = sd(Petal.Width)
+  )
+
+# Display as a nice table
+kable(summary_table, digits = 2, caption = "Summary Statistics by Species")
+```
+
+## Summary table inferences
+
+\textcolor{red}{Setosa} has the ***smallest petals*** overall, with an average petal length of **1.46 cm** and width of **0.25 cm**. The low standard deviations indicate that \textcolor{red}{Setosa} flowers are consistently small in size.
+
+\textcolor{green}{Versicolor} shows ***moderate petal*** size, averaging **4.26 cm** in length and **1.33 cm** in width. It also exhibits slightly higher variation compared to \textcolor{red}{Setosa}.
+
+\textcolor{blue}{Virginica} has the ***largest petals***, with mean petal dimensions of **5.55 cm** (length) and **2.03 cm** (width). It also displays the greatest variability, especially in petal width.
+
+These differences are **substantial and consistent**, making **petal length and width excellent predictors** for classifying iris species.
