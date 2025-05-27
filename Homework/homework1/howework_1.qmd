@@ -51,3 +51,40 @@ kable(summary_table, digits = 2, caption = "Summary Statistics by Species")
 \textcolor{blue}{Virginica} has the ***largest petals***, with mean petal dimensions of **5.55 cm** (length) and **2.03 cm** (width). It also displays the greatest variability, especially in petal width.
 
 These differences are **substantial and consistent**, making **petal length and width excellent predictors** for classifying iris species.
+
+# Plot
+
+The scatter plot below shows the relationship between petal length and petal width, colored by species:
+
+```{r, fig.align='center', fig.width=8, fig.height=5}
+#| label: fig-scatter
+#| fig-cap: "Scatter plot of Petal Length vs Petal Width by Species"
+#| fig-align: center
+
+library(ggplot2)
+# scatter plot as per petal width and petal length (cm)
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  geom_point(size = 2) +
+  theme_minimal() +
+  labs(
+    title = "Petal Length vs Petal Width by Species",
+    x = "Petal Length (cm)",
+    y = "Petal Width (cm)"
+  ) +
+  theme(
+    # Centering the title
+    plot.title = element_text(hjust = 0.5)  
+  )
+```
+
+## Interpretation of the plot
+
+From @fig-scatter we can infer the following:
+
+\textcolor{red}{Setosa} is clearly separable, its petals are significantly smaller in both length and width compared to other two species.
+
+\textcolor{green}{Versicolor} lies in the middle range for both dimensions.
+
+\textcolor{blue}{Virginica} has the largest petals, both in length and width.
+
+There is a visible positive correlation between petal length and petal width within each species.The species form distinct clusters, particularly \textcolor{red}{Setosa}, which is completely separated from the others. This makes petal measurements powerful features for classification tasks like species prediction.
