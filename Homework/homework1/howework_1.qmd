@@ -62,10 +62,12 @@ The scatter plot below shows the relationship between petal length and petal wid
 #| fig-align: center
 
 library(ggplot2)
-# scatter plot as per petal width and petal length (cm)
+# Scatter plot as per petal width and petal length (cm)
+# Added color by species
 ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point(size = 2) +
-  theme_minimal() +
+  geom_point(size = 2) + # Size of scatter points in the plot
+  theme_minimal() + # Clean theme for good visibility
+  # Labeling the plot
   labs(
     title = "Petal Length vs Petal Width by Species",
     x = "Petal Length (cm)",
